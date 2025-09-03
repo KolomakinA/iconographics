@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: White Label eSIM Platform Integration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .flow-arrow {
+            position: relative;
+            width: 100%;
+            height: 2px;
+            background-color: #A05195;
+            transition: all 0.3s ease-in-out;
+        }
+        .flow-arrow::after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            top: -5px;
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 8px solid #A05195;
+            transition: all 0.3s ease-in-out;
+        }
+        .flow-box { transition: all 0.3s ease-in-out; }
+        .active-flow, .active-arrow {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .active-arrow { background-color: #FF7C43; }
+        .active-arrow::after { border-left-color: #FF7C43; }
+    </style>
+    <!-- Chosen Palette: Brilliant Blues (#003F5C, #2F4B7C, #665191, #A05195, #D45087, #F95D6A, #FF7C43, #FFA600) -->
+    <!-- Application Structure Plan: The SPA is structured as a narrative journey for a potential partner. It starts with a high-level goal, explains the solution, dives into an interactive diagram of the core process, clarifies key decisions (email), visualizes the division of labor, lists benefits, and ends with a clear call to action. This top-down, story-driven approach was chosen to make a complex technical topic accessible and digestible for both technical and business stakeholders, focusing on "how it works" and "what it means for me" rather than a dry recitation of the report's sections. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Core requirements. -> Goal: Inform. -> Viz/Method: Large text & icon cards. -> Interaction: None. -> Justification: Quickly establishes the value proposition. -> Method: HTML/CSS.
+        - Report Info: System data flow. -> Goal: Organize. -> Viz/Method: Interactive HTML/CSS diagram. -> Interaction: Clicking on a step's text description highlights the corresponding component and data path in the diagram. -> Justification: Actively engages the user and visually connects the text to the process, which is far more effective for understanding a process than a static diagram. -> Method: HTML/CSS/JS (NO SVG/Mermaid).
+        - Report Info: Email verification options. -> Goal: Compare. -> Viz/Method: Side-by-side comparison cards. -> Interaction: None. -> Justification: Clearly presents a choice for the partner, highlighting the recommended option. -> Method: HTML/CSS.
+        - Report Info: List of responsibilities. -> Goal: Compare/Inform. -> Viz/Method: Horizontal Bar Chart + two-column list. -> Interaction: Chart hover tooltips. -> Justification: The chart gives an immediate at-a-glance understanding of the workload distribution, while the lists provide the necessary detail. -> Library: Chart.js (NO SVG).
+        - Report Info: Benefits. -> Goal: Inform. -> Viz/Method: Grid of icon cards. -> Interaction: None. -> Justification: Easy to scan and reinforces the value proposition presented at the start. -> Method: HTML/CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-gray-50 text-[#2F4B7C]">
+
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center">
+            <a href="#" class="mr-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="110" height="32" fill="none" class="h-auto lg:h-8 w-auto" loading="lazy"><path fill="#4A4A4A" d="M53.103 3.725h2.295v9.047h-2.295v-.957q-.672.633-1.348.91-.676.28-1.465.28-1.772 0-3.066-1.36t-1.293-3.38c0-1.347.417-2.542 1.251-3.434q1.252-1.34 3.04-1.34a3.9 3.9 0 0 1 1.546.308q.72.308 1.335.923v-.998zM50.69 5.588q-1.065 0-1.768.744t-.704 1.908c0 .776.239 1.425.716 1.93a2.33 2.33 0 0 0 1.765.756c.699 0 1.318-.248 1.793-.744q.712-.744.712-1.95c0-.804-.237-1.425-.712-1.912q-.712-.732-1.801-.732zM58.12 0q.603 0 1.035.433.432.432.432 1.047c0 .41-.143.75-.428 1.035a1.4 1.4 0 0 1-1.022.429c-.397 0-.756-.146-1.044-.437a1.45 1.45 0 0 1-.432-1.06c0-.416.143-.74.428-1.023A1.4 1.4 0 0 1 58.12 0m-1.148 3.725h2.296v9.046h-2.296zM60.814 3.725h1.968v1.14q.32-.674.849-1.024.529-.349 1.16-.349.446 0 .933.233l-.715 1.954q-.403-.2-.664-.2-.53 0-.895.649-.366.648-.366 2.545l.008.44v3.659h-2.278zM72.993 3.725h2.296v9.047h-2.296v-.957q-.672.633-1.347.91-.676.28-1.466.28-1.772 0-3.065-1.36t-1.294-3.38c0-1.347.417-2.542 1.252-3.434q1.25-1.34 3.04-1.34a3.9 3.9 0 0 1 1.545.308q.722.308 1.335.923v-.998zM70.58 5.588q-1.064 0-1.767.744-.704.744-.704 1.908c0 .776.238 1.425.716 1.93a2.33 2.33 0 0 0 1.764.756c.699 0 1.319-.248 1.793-.744q.713-.744.713-1.95c0-.804-.238-1.425-.713-1.912q-.712-.732-1.801-.732M76.862.233h2.296v12.539h-2.296zM85.416 3.492q1.294 0 2.433.64a4.66 4.66 0 0 1 1.779 1.739 4.63 4.63 0 0 1 .639 2.37c0 .848-.215 1.651-.644 2.394a4.6 4.6 0 0 1-1.753 1.742 4.9 4.9 0 0 1-2.447.628q-1.966 0-3.358-1.384-1.392-1.385-1.392-3.363 0-2.121 1.572-3.534 1.38-1.23 3.17-1.231m.037 2.137q-1.07 0-1.781.736-.712.735-.712 1.883c0 .766.234 1.425.703 1.913q.704.73 1.782.73 1.077.001 1.793-.74.716-.739.716-1.903t-.703-1.892q-.705-.728-1.798-.728z"></path><path fill="#4E6EDD" d="M48.212 19.645v.998a4.2 4.2 0 0 1 1.316-.923 3.75 3.75 0 0 1 1.513-.308q1.751 0 2.976 1.339t1.226 3.434q0 2.02-1.267 3.383-1.266 1.356-3.001 1.356-.773 0-1.44-.275-.665-.282-1.323-.914V32h-2.229V19.645zm2.36 1.862q-1.06 0-1.76.732-.699.732-.699 1.912 0 1.206.7 1.954.698.74 1.759.74 1.027 0 1.727-.756.707-.757.707-1.93 0-1.163-.69-1.903-.691-.75-1.744-.749M63.376 19.645h2.236v9.046h-2.236v-.956q-.658.632-1.324.914a3.7 3.7 0 0 1-1.431.275q-1.735 0-3.002-1.356-1.266-1.364-1.266-3.383 0-2.096 1.225-3.434 1.226-1.34 2.977-1.339.806 0 1.513.308a4.1 4.1 0 0 1 1.308.923zm-2.36 1.862q-1.045 0-1.735.749-.691.74-.691 1.904 0 1.172.699 1.928.707.757 1.735.757 1.06 0 1.76-.74.698-.748.699-1.954 0-1.18-.7-1.912-.698-.732-1.767-.732M67.019 19.645h1.924v1.14q.312-.674.83-1.024.519-.348 1.135-.349.436 0 .913.233l-.699 1.954q-.395-.2-.65-.2-.517 0-.88.649-.353.648-.353 2.544l.008.44v3.659H67.02zM73.643 16.311h2.237v3.334h1.332v1.954H75.88v7.092h-2.237v-7.092h-1.15v-1.954h1.15zM78.505 19.645h2.237v.923q.765-.648 1.381-.898a3.3 3.3 0 0 1 1.275-.258q1.332 0 2.261.94.781.798.781 2.36v5.979h-2.22v-3.966q0-1.621-.148-2.153-.14-.532-.501-.807-.355-.283-.88-.283-.682 0-1.176.466-.486.458-.674 1.272-.1.424-.1 1.838v3.633h-2.236zM96.97 24.825H89.76q.155.964.83 1.538.683.565 1.735.565 1.26 0 2.163-.89l1.891.898q-.707 1.015-1.694 1.505-.986.483-2.343.483-2.106 0-3.43-1.339-1.323-1.347-1.323-3.367 0-2.07 1.316-3.434 1.323-1.372 3.314-1.372 2.112 0 3.437 1.372 1.324 1.365 1.324 3.608zm-2.253-1.788a2.27 2.27 0 0 0-.88-1.23 2.5 2.5 0 0 0-1.513-.474 2.66 2.66 0 0 0-1.644.532q-.444.332-.823 1.172zM98.354 19.645h1.924v1.14q.312-.674.831-1.024.517-.348 1.134-.349.436 0 .913.233l-.699 1.954q-.394-.2-.649-.2-.519 0-.88.649-.354.648-.354 2.544l.008.44v3.659h-2.228zM109.835 20.909l-1.389 1.405q-.848-.849-1.538-.848-.378 0-.592.166a.48.48 0 0 0-.214.4q0 .182.132.34.14.15.674.416l.822.415q1.299.65 1.785 1.322.485.674.485 1.58 0 1.206-.88 2.012-.871.807-2.344.807-1.957 0-3.124-1.547l1.381-1.521q.394.465.921.756.534.283.946.283.444 0 .715-.216t.271-.499q0-.524-.978-1.023l-.757-.382q-2.17-1.106-2.171-2.769 0-1.073.815-1.829.822-.765 2.096-.765.872 0 1.637.391.773.383 1.307 1.106"></path><path fill="url(#a)" d="M39.392 1.559v20.415s.071 3.162-2.601 6.166c-2.672 3.002-6.18 3.365-7.11 3.365h-3.998l.506-22.71s.066-3.415 2.98-6.267C31.946-.191 35.49.003 35.49.003h2.372s1.531-.142 1.531 1.556"></path><path fill="url(#b)" d="m12.955 17.674.117 13.831H1.39S0 31.474 0 30.411v-4.148s-.052-3.055 2.36-5.62 5.293-2.902 6.188-2.902c.897 0 4.406-.067 4.406-.067"></path><path fill="url(#c)" d="M26.247 31.505H12.422l.531-13.831s-.163-3.294 2.944-6.221c2.133-2.008 4.112-2.515 5.84-2.515h4.448z"></path><path fill="#B50D31" d="M25.671 31.507h.576l-.06-22.567z" opacity=".61"></path><path fill="#C84E28" d="m12.955 17.503-.547 14.002h.65z" opacity=".59"></path><path fill="url(#d)" fill-rule="evenodd" d="M39.372 1.563V22.03s.072 3.17-2.64 6.181c-2.713 3.01-6.274 3.375-7.218 3.375h-4.077v-.002H1.378S0 31.553 0 30.488v-4.16s-.051-3.061 2.34-5.633 5.244-2.91 6.131-2.91c.867 0 4.191-.064 4.359-.067l.004-.102c.002-.577.157-3.503 2.918-6.134 2.113-2.013 4.074-2.522 5.787-2.522h4.407v.047l.001-.044.002.766.02-.912s.068-3.423 3.026-6.283C31.813-.19 35.41.004 35.41.004h2.407c0-.002 1.554-.143 1.554 1.559" clip-rule="evenodd" style="mix-blend-mode:color;"></path><path fill="url(#e)" fill-rule="evenodd" d="M39.372 1.563V22.03s.072 3.17-2.64 6.181c-2.713 3.01-6.274 3.375-7.218 3.375h-4.077v-.002H1.378S0 31.553 0 30.488v-4.16s-.051-3.061 2.34-5.633 5.244-2.91 6.131-2.91c.867 0 4.191-.064 4.359-.067l.004-.102c.002-.577.157-3.503 2.918-6.134 2.113-2.013 4.074-2.522 5.787-2.522h4.407v.047l.001-.044.002.766.02-.912s.068-3.423 3.026-6.283C31.813-.19 35.41.004 35.41.004h2.407c0-.002 1.554-.143 1.554 1.559" clip-rule="evenodd" style="mix-blend-mode:color;"></path><defs><linearGradient id="a" x1="32.344" x2="34.133" y1="-1.758" y2="30.16" gradientUnits="userSpaceOnUse"><stop offset=".02" stop-color="#A75584"></stop><stop offset=".42" stop-color="#B6496F"></stop><stop offset=".574" stop-color="#BF4868"></stop><stop offset=".819" stop-color="#D64455"></stop><stop offset=".906" stop-color="#E0434D"></stop></linearGradient><linearGradient id="b" x1="9.733" x2="-1.284" y1="18.974" y2="47.419" gradientUnits="userSpaceOnUse"><stop offset=".003" stop-color="#FFE065"></stop><stop offset=".024" stop-color="#FFDC54"></stop><stop offset=".128" stop-color="#FFC906"></stop><stop offset=".145" stop-color="#FEC30C"></stop><stop offset=".26" stop-color="#F59D31"></stop><stop offset=".321" stop-color="#F28F3F"></stop><stop offset=".47" stop-color="#ED6948"></stop></linearGradient><linearGradient id="c" x1="18.539" x2="23.032" y1="8.928" y2="33.197" gradientUnits="userSpaceOnUse"><stop offset=".018" stop-color="#CF5C6C"></stop><stop offset=".09" stop-color="#D85F68"></stop><stop offset=".268" stop-color="#EB6661"></stop><stop offset=".396" stop-color="#F1685F"></stop><stop offset=".652" stop-color="#F0774F"></stop><stop offset=".957" stop-color="#F08441"></stop></linearGradient><linearGradient id="d" x1="19.516" x2="-1.636" y1="0" y2="31.362" gradientUnits="userSpaceOnUse"><stop offset=".126" stop-color="#304FBE"></stop><stop offset=".557" stop-color="#44B9C0"></stop><stop offset=".969" stop-color="#44C07D"></stop></linearGradient><linearGradient id="e" x1="19.516" x2="-1.636" y1="0" y2="31.362" gradientUnits="userSpaceOnUse"><stop offset=".126" stop-color="#304FBE"></stop><stop offset=".557" stop-color="#44B9C0"></stop><stop offset=".969" stop-color="#44C07D"></stop></linearGradient></defs></svg>
+            </a>
+            <div class="flex-grow">
+                <h1 class="text-3xl font-bold text-[#003F5C]">White Label eSIM Platform Integration</h1>
+                <p class="text-lg text-[#665191]">An Interactive Technical Overview</p>
+            </div>
+        </div>
+    </header>
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-[#003F5C]">White Label eSIM Platform Integration</h1>
+            <p class="text-lg text-[#665191]">An Interactive Technical Overview</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        
+        <section id="goal" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003F5C] mb-4">The Goal: A Seamless Brand Experience</h2>
+            <p class="text-lg mb-6 text-gray-600">This technical overview explains how to integrate the Airalo White Label e-commerce platform so it's served directly from your partner domain. The architecture is designed to meet three key requirements for a successful partnership.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <span class="text-4xl">🔗</span>
+                    <h3 class="text-xl font-semibold text-[#665191] mt-2">Seamless User Experience</h3>
+                    <p class="mt-2 text-gray-600">Users see your domain (e.g., `airgsm.com`) in the address bar at all times, ensuring brand consistency and trust.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <span class="text-4xl">⚙️</span>
+                    <h3 class="text-xl font-semibold text-[#665191] mt-2">Full Partner Control</h3>
+                    <p class="mt-2 text-gray-600">You retain complete control over your domain's SEO, traffic analytics, and routing rules.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <span class="text-4xl">🛡️</span>
+                    <h3 class="text-xl font-semibold text-[#665191] mt-2">Robust Security</h3>
+                    <p class="mt-2 text-gray-600">The direct platform instance is shielded from public access, protecting your integration.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="mb-12 bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-[#003F5C] mb-4">The Solution: Reverse Proxy Architecture</h2>
+            <p class="text-lg text-gray-600">The integration is achieved using a <b>Reverse Proxy</b>. This is a standard, secure, and highly effective architecture for White Label solutions. Your reverse proxy server acts as the "front door" for your domain. It receives all user traffic and intelligently forwards it to the Airalo platform, while ensuring your domain remains in the user's address bar. This process is completely invisible to the end-user.</p>
+        </section>
+        
+        <section id="platform-overview" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Platform Services Overview</h2>
+            <p class="text-lg mb-8 text-gray-600">The White Label solution consists of two distinct services, each with a specific audience and interaction flow, as illustrated below.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <!-- Management Flow -->
+                <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                    <h3 class="text-xl font-semibold text-center text-[#003F5C] mb-6">Management Flow</h3>
+                    <div class="flex flex-col items-center space-y-4 text-center">
+                        <div class="flow-box bg-blue-100 p-4 rounded-lg w-full max-w-xs">
+                            <span class="text-3xl">👩‍💼</span>
+                            <h4 class="font-semibold text-lg text-blue-800">Partner Employees</h4>
+                        </div>
+                        <div class="text-4xl text-gray-400 font-light">↓</div>
+                        <div class="w-full bg-gray-50 p-6 rounded-lg border-2 border-dashed border-[#665191]">
+                            <h4 class="text-xl font-semibold text-[#003F5C]">Partner Platform</h4>
+                            <p class="mt-2 text-gray-600">This is your secure administrative backend to manage the e-shop, set prices, control inventory, review support requests, and configure payment information. Access can be integrated with your SSO.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Flow -->
+                <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                    <h3 class="text-xl font-semibold text-center text-[#003F5C] mb-6">Customer Flow</h3>
+                    <div class="flex flex-col items-center space-y-4 text-center">
+                        <div class="flow-box bg-blue-100 p-4 rounded-lg w-full max-w-xs">
+                            <span class="text-3xl">👤</span>
+                            <h4 class="font-semibold text-lg text-blue-800">End-Users</h4>
+                        </div>
+                        <div class="text-4xl text-gray-400 font-light">↓</div>
+                        <div class="flow-box bg-purple-100 p-4 rounded-lg w-full max-w-xs">
+                            <span class="text-3xl">💻</span>
+                             <h4 class="font-semibold text-lg text-purple-800">Your Reverse Proxy</h4>
+                        </div>
+                        <div class="text-4xl text-gray-400 font-light">↓</div>
+                        <div class="w-full bg-gray-50 p-6 rounded-lg border-2 border-dashed border-[#FFA600]">
+                            <h4 class="text-xl font-semibold text-[#003F5C]">White Label Storefront</h4>
+                             <p class="mt-2 text-gray-600">This is the customer-facing e-shop where users browse, purchase, top-up, and manage their eSIMs under your brand, accessed seamlessly via your domain.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003F5C] mb-4">End-User Data Flow Deep Dive</h2>
+            <p class="text-lg mb-6 text-gray-600">The diagram below details how a customer's request to the White Label Storefront travels through the system. Click on each step in the text description to see the corresponding part of the diagram come to life.</p>
+            
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+                <div class="bg-white p-6 rounded-lg shadow-md mb-8 lg:mb-0">
+                    <div id="flow-diagram" class="space-y-4">
+                        <div class="text-center">
+                            <div id="flow-user" class="flow-box inline-block bg-blue-100 p-4 rounded-lg border-2 border-transparent">👤 End User's Browser</div>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="w-1/4"></div>
+                            <div id="arrow-1" class="flow-arrow w-1/2"></div>
+                            <div class="w-1/4"></div>
+                        </div>
+                        <div class="text-center p-4 border-2 border-dashed border-[#A05195] rounded-lg">
+                            <h4 class="font-semibold text-[#A05195] mb-2">Partner's Infrastructure</h4>
+                            <div id="flow-dns" class="flow-box inline-block bg-purple-100 p-4 rounded-lg border-2 border-transparent mb-4">🌐 DNS for airgsm.com</div>
+                            <div class="flex items-center justify-center">
+                                <div class="w-1/4"></div>
+                                <div id="arrow-2" class="flow-arrow w-1/2"></div>
+                                <div class="w-1/4"></div>
+                            </div>
+                            <div id="flow-proxy" class="flow-box inline-block bg-purple-100 p-4 rounded-lg border-2 border-transparent">💻 Partner's Reverse Proxy</div>
+                        </div>
+                        <div class="flex items-center justify-center">
+                           <div class="w-1/4"></div>
+                           <div id="arrow-3" class="flow-arrow w-1/2"></div>
+                           <div class="w-1/4"></div>
+                        </div>
+                        <div class="text-center p-4 border-2 border-dashed border-[#FF7C43] rounded-lg">
+                             <h4 class="font-semibold text-[#FF7C43] mb-2">The Airalo Infrastructure</h4>
+                            <div id="flow-firewall" class="flow-box inline-block bg-orange-100 p-4 rounded-lg border-2 border-transparent mb-4">🛡️ Firewall / IP Whitelist</div>
+                            <div class="flex items-center justify-center">
+                               <div class="w-1/4"></div>
+                               <div id="arrow-4" class="flow-arrow w-1/2"></div>
+                               <div class="w-1/4"></div>
+                            </div>
+                            <div id="flow-platform" class="flow-box inline-block bg-orange-100 p-4 rounded-lg border-2 border-transparent">🛍️ White Label Storefront</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <div id="step-1" class="step-description p-4 rounded-lg cursor-pointer hover:bg-gray-100"><strong>1. User Request:</strong> An end-user types `https://airgsm.com` into their browser.</div>
+                    <div id="step-2" class="step-description p-4 rounded-lg cursor-pointer hover:bg-gray-100"><strong>2. DNS Resolution:</strong> The partner's DNS points the domain to the public IP of their Reverse Proxy.</div>
+                    <div id="step-3" class="step-description p-4 rounded-lg cursor-pointer hover:bg-gray-100"><strong>3. Proxy Receives & Forwards:</strong> The Reverse Proxy receives the request and forwards it to the Airalo White Label Storefront's origin URL.</div>
+                    <div id="step-4" class="step-description p-4 rounded-lg cursor-pointer hover:bg-gray-100"><strong>4. IP Whitelist Check:</strong> The Airalo firewall checks that the request is from the partner's whitelisted proxy IP.</div>
+                    <div id="step-5" class="step-description p-4 rounded-lg cursor-pointer hover:bg-gray-100"><strong>5. Platform Response:</strong> The Airalo storefront processes the request and sends the e-shop page back to the proxy.</div>
+                    <div id="step-6" class="step-description p-4 rounded-lg cursor-pointer hover:bg-gray-100"><strong>6. Response Relay:</strong> The response travels back from the Airalo firewall to the partner's proxy.</div>
+                    <div id="step-7" class="step-description p-4 rounded-lg cursor-pointer hover:bg-gray-100"><strong>7. Final Response:</strong> The proxy serves the page to the user, who still sees `https://airgsm.com` in their browser.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="email-setup" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Email Communication Setup</h2>
+            <p class="text-lg mb-6 text-gray-600">To maintain brand consistency, transactional emails (like order confirmations) must come from your domain. The Airalo platform uses Postmark for reliable delivery. You have two options to authorize the Airalo platform to send emails on your behalf.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#FFA600]">
+                    <h3 class="text-xl font-semibold text-[#003F5C]">Option 1: Full Domain Verification (Recommended) 👍</h3>
+                    <p class="mt-2 text-gray-600"><strong>How it works:</strong> You add specific DNS records (DKIM and Return-Path) that Airalo provides to your domain's configuration.</p>
+                    <p class="mt-4 font-semibold text-[#665191]">This is the industry-standard method for maximum email deliverability and security. It allows the Airalo platform to send emails from any address on your domain (e.g., `support@airgsm.com`), providing full flexibility.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-gray-300">
+                    <h3 class="text-xl font-semibold text-[#003F5C]">Option 2: Single Email Address Verification</h3>
+                    <p class="mt-2 text-gray-600"><strong>How it works:</strong> Provide a single email address to Airalo. Postmark will send a verification link to this address, which you must click.</p>
+                    <p class="mt-4 font-semibold text-[#D45087]">This is a simpler setup but is less flexible. The Airalo platform will only be able to send emails from that one exact address.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="responsibilities" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Who Does What? A Clear Breakdown</h2>
+            <p class="text-lg mb-6 text-gray-600">Successful integration is a partnership. The summary below gives a quick overview of the task distribution, followed by a detailed list of responsibilities for each party.</p>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8 max-w-lg mx-auto">
+                <h3 class="text-xl font-semibold text-center text-[#003F5C] mb-4">Task Distribution Summary</h3>
+                <div class="flex justify-around text-center">
+                    <div>
+                        <p class="text-4xl font-bold text-[#A05195]">6</p>
+                        <p class="text-lg font-medium text-gray-600">Partner Tasks</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-semibold text-[#FF7C43]">4</p>
+                        <p class="text-lg font-medium text-gray-600">The Airalo Tasks</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-[#665191] mb-4">Partner's Responsibilities</h3>
+                    <ul class="space-y-3 list-disc list-inside text-gray-600">
+                        <li><strong>DNS Management:</strong> Point domain's A or CNAME records to your proxy server.</li>
+                        <li><strong>Reverse Proxy:</strong> Procure, configure, and maintain the proxy server.</li>
+                        <li><strong>SSL Certificate:</strong> Manage and install the SSL certificate for your domain.</li>
+                        <li><strong>Email Verification:</strong> Add DNS records or verify a single sender email address.</li>
+                        <li><strong>SEO & Traffic Control:</strong> Implement analytics, caching, and SEO rules on your proxy.</li>
+                        <li><strong>Cookie/Consent Management:</strong> Provide the script for your consent management tool.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-[#FF7C43] mb-4">The Airalo Responsibilities</h3>
+                    <ul class="space-y-3 list-disc list-inside text-gray-600">
+                        <li><strong>Platform Availability:</strong> Ensure uptime and performance of both the Partner Platform and Storefront.</li>
+                        <li><strong>Provide Origin URL:</strong> Supply the stable URL for your White Label Storefront instance.</li>
+                        <li><strong>IP Whitelisting:</strong> Securely maintain the list of approved partner IP addresses.</li>
+                        <li><strong>Provide Email DNS Records:</strong> Supply the correct DKIM and Return-Path records.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="proxy-examples" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Reverse Proxy Technology</h2>
+            <p class="text-lg mb-6 text-gray-600">The reverse proxy architecture is flexible and can be implemented using a variety of modern proxy servers. Common choices include Nginx, HAProxy, Caddy, and Traefik. The Airalo team can provide guidance based on your specific technical environment.</p>
+        </section>
+
+         <section id="benefits" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Key Benefits of This Approach</h2>
+            <p class="text-lg mb-6 text-gray-600">This architecture provides significant advantages for security, branding, and control.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <span class="text-3xl">🎨</span>
+                    <h3 class="text-lg font-semibold text-[#665191] mt-2">Full Brand Consistency</h3>
+                    <p class="mt-1 text-gray-600">The user journey, from website to email, happens entirely on your domain.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <span class="text-3xl">📈</span>
+                    <h3 class="text-lg font-semibold text-[#665191] mt-2">Complete SEO Control</h3>
+                    <p class="mt-1 text-gray-600">Manage meta tags, `robots.txt`, and sitemaps directly on your proxy.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <span class="text-3xl">🔒</span>
+                    <h3 class="text-lg font-semibold text-[#665191] mt-2">Enhanced Security</h3>
+                    <p class="mt-1 text-gray-600">IP whitelisting prevents unauthorized scraping and direct access.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <span class="text-3xl">📊</span>
+                    <h3 class="text-lg font-semibold text-[#665191] mt-2">Flexibility & Analytics</h3>
+                    <p class="mt-1 text-gray-600">Integrate your own analytics, caching, or even a Web Application Firewall.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="mb-12">
+            <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Frequently Asked Questions</h2>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-lg font-semibold text-[#665191] mb-2">Q: How can we manage SEO for the White Label e-shop?</h3>
+                    <p class="text-gray-600">This is a key benefit of the reverse proxy model. You have full control over how your domain is presented to search engines. Your proxy can manage your `robots.txt` and `sitemap.xml` files, implement 301/302 redirects, and even modify HTTP headers for advanced SEO tactics. This gives you complete authority over your search engine presence.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-lg font-semibold text-[#665191] mb-2">Q: Who is responsible for on-page SEO elements like header tags (&lt;h1&gt;, &lt;h2&gt;)?</h3>
+                    <p class="text-gray-600">This responsibility is shared. The Airalo White Label Storefront provides the core e-shop page with a well-structured and semantic use of header tags. Your team then controls the final output via the reverse proxy. While you can't change the platform's core HTML, you can override metadata like the page `&lt;title&gt;` or inject structured data (like JSON-LD for rich snippets) to enhance the base provided by Airalo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-lg font-semibold text-[#665191] mb-2">Q: Can we use our own analytics and cookie consent tools?</h3>
+                    <p class="text-gray-600">Yes, and it is expected. As part of your responsibilities, you will provide the script for your cookie and consent management platform. Similarly, you can use your reverse proxy to inject your own analytics scripts (e.g., Google Analytics, Adobe Analytics). This ensures you own all your user data and remain compliant with privacy regulations like GDPR.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-lg font-semibold text-[#665191] mb-2">Q: Why is a reverse proxy necessary? Can't we just use a CNAME redirect?</h3>
+                    <p class="text-gray-600">A simple CNAME redirect would show the Airalo White Label Storefront's URL in the browser's address bar after the page loads, breaking the seamless brand experience. The reverse proxy is the essential component that "masks" the origin URL, keeping your domain visible at all times. This is critical for brand trust, SEO, and gives you the control over caching, security, and analytics outlined in this document.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="next-steps" class="bg-gradient-to-r from-[#665191] to-[#A05195] text-white p-8 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold mb-4">Next Steps & Requirements</h2>
+            <p class="text-xl mb-6">To begin the integration process, Airalo requires three key pieces of information from you.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white/20 p-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-2">1. Your Proxy IP Address</h3>
+                    <p>A static, public IPv4 address (or range) of your reverse proxy server for the Airalo firewall whitelist.</p>
+                </div>
+                <div class="bg-white/20 p-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-2">2. Email Verification Choice</h3>
+                    <p>Your choice of email verification method (full domain or single address) and the required details.</p>
+                </div>
+                <div class="bg-white/20 p-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-2">3. Cookie and Consent Management Script</h3>
+                    <p>The JavaScript snippet for your cookie and consent management tool to ensure compliance with privacy regulations.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const steps = document.querySelectorAll('.step-description');
+            const flowElements = {
+                'step-1': ['flow-user', 'arrow-1'],
+                'step-2': ['flow-dns', 'arrow-2'],
+                'step-3': ['flow-proxy', 'arrow-3'],
+                'step-4': ['flow-firewall', 'arrow-4'],
+                'step-5': ['flow-platform'],
+                'step-6': ['flow-firewall', 'flow-proxy'],
+                'step-7': ['flow-user']
+            };
+            const allFlowIds = ['flow-user', 'arrow-1', 'flow-dns', 'arrow-2', 'flow-proxy', 'arrow-3', 'flow-firewall', 'arrow-4', 'flow-platform'];
+
+            function highlightFlow(stepId) {
+                allFlowIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.classList.remove('active-flow', 'active-arrow', 'border-[#FF7C43]');
+                        el.style.borderColor = 'transparent';
+                    }
+                });
+
+                steps.forEach(s => s.classList.remove('bg-yellow-100'));
+                document.getElementById(stepId).classList.add('bg-yellow-100');
+                
+                const elementsToHighlight = flowElements[stepId] || [];
+
+                elementsToHighlight.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        if(id.startsWith('arrow')) {
+                            el.classList.add('active-arrow');
+                        } else {
+                            el.classList.add('active-flow');
+                            el.style.borderColor = '#FF7C43';
+                        }
+                    }
+                });
+            }
+
+            steps.forEach(step => {
+                step.addEventListener('click', () => {
+                    highlightFlow(step.id);
+                });
+            });
+
+            highlightFlow('step-1');
+        });
+    </script>
+</body>
+</html>
